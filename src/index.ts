@@ -14,7 +14,7 @@ import { TextDocument, Position, TextDocumentPositionParams } from 'vscode-langu
 import { activateTagClosing } from './html/autoClose'
 
 export function activate(context: ExtensionContext) {
-  const serverModule = require.resolve('svelte-language-server-bin/server.js')
+  const serverModule = require.resolve('svelte-language-server/bin/server.js')
   const runtimeConfig = workspace.getConfiguration('svelte.language-server')
 
   const runExecArgv: string[] = []
