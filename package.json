@@ -1,6 +1,6 @@
 {
-  "name": "@jjrdn/coc-svelte",
-  "version": "0.0.2",
+  "name": "coc-svelte-fork",
+  "version": "0.0.5",
   "description": "Svelte language support for coc.nvim",
   "main": "out/index.js",
   "scripts": {
@@ -200,12 +200,12 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^9.6.5",
-    "coc.nvim": "^0.0.73",
-    "typescript": "^3.0.1"
+    "@types/node": "^14.0.11",
+    "coc.nvim": "^0.0.77",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
-    "svelte-language-server": "0.10.3",
-    "vscode-languageserver-protocol": "^3.14.1"
+    "svelte-language-server": "0.10.29",
+    "vscode-languageserver-protocol": "^3.15.3"
   }
 }
