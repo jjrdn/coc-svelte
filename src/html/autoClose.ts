@@ -20,7 +20,7 @@ export function activateTagClosing(
 ): Disposable {
   let disposables: Disposable[] = []
   workspace.onDidChangeTextDocument(
-    event => {
+    (event) => {
       const document = workspace.getDocument(event.textDocument.uri)
       if (document) {
         onDidChangeTextDocument(document.textDocument, event.contentChanges)
@@ -73,10 +73,16 @@ export function activateTagClosing(
     }
     let lastChange = changes[changes.length - 1]
     let lastCharacter = lastChange.text[lastChange.text.length - 1]
-    if (lastChange.rangeLength! > 0 || (lastCharacter !== '>' && lastCharacter !== '/')) {
+    if (
+      ('range' in lastChange && (lastChange.rangeLength ?? 0) > 0) ||
+      (lastCharacter !== '>' && lastCharacter !== '/')
+    ) {
       return
     }
-    let rangeStart = lastChange.range!.start
+    let rangeStart =
+      'range' in lastChange
+        ? lastChange.range!.start
+        : Position.create(0, document.getText().length)
     let version = document.version
     timeout = setTimeout(async () => {
       let position = Position.create(rangeStart.line, rangeStart.character + lastChange.text.length)
@@ -97,7 +103,7 @@ export function activateTagClosing(
 
   return {
     dispose() {
-      disposables.forEach(disposable => {
+      disposables.forEach((disposable) => {
         disposable.dispose()
       })
     },

@@ -1,5 +1,5 @@
 {
-  "name": "coc-svelte",
+  "name": "@jjrdn/coc-svelte",
   "version": "0.0.2",
   "description": "Svelte language support for coc.nvim",
   "main": "out/index.js",
