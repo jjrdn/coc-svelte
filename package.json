@@ -1,6 +1,6 @@
 {
   "name": "coc-svelte-fork",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Svelte language support for coc.nvim",
   "main": "out/index.js",
   "scripts": {
@@ -16,13 +16,13 @@
     "lsp",
     "svelte"
   ],
-  "author": "iamcco <ooiss@qq.com>",
+  "author": "jjrdn <jjrdn@styosis.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/coc-extensions/coc-svelte/issues"
+    "url": "https://github.com/jjrdn/coc-svelte/issues"
   },
-  "homepage": "https://github.com/coc-extensions/coc-svelte#readme",
-  "publisher": "iamcco",
+  "homepage": "https://github.com/jjrdn/coc-svelte#readme",
+  "publisher": "jjrdn",
   "engines": {
     "coc": "^0.0.73"
   },
@@ -39,6 +39,12 @@
           "type": "string",
           "title": "Language Server Runtime",
           "description": "Path to the node executable to use to spawn the language server"
+        },
+        "svelte.language-server.port": {
+          "type": "number",
+          "default": 6009,
+          "title": "Language Server Port",
+          "description": "The port to connect to language server"
         },
         "svelte.plugin.typescript.enable": {
           "type": "boolean",
@@ -129,12 +135,6 @@
           "default": true,
           "title": "HTML",
           "description": "Enable the HTML plugin"
-        },
-        "svelte.plugin.html.autoClosingTags": {
-          "type": "boolean",
-          "default": true,
-          "title": "HTML",
-          "description": "Enable autoClosingTags in HTML"
         },
         "svelte.plugin.html.hover.enable": {
           "type": "boolean",

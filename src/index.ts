@@ -1,5 +1,3 @@
-import * as path from 'path'
-
 import {
   workspace,
   ExtensionContext,
@@ -11,23 +9,16 @@ import {
   RevealOutputChannelOn,
 } from 'coc.nvim'
 import { TextDocument, Position, TextDocumentPositionParams } from 'vscode-languageserver-protocol'
-import { activateTagClosing } from './html/autoClose'
 
 export function activate(context: ExtensionContext) {
   const serverModule = require.resolve('svelte-language-server/bin/server.js')
   const runtimeConfig = workspace.getConfiguration('svelte.language-server')
 
-  const runExecArgv: string[] = []
-  let port = runtimeConfig.get<number>('port') ?? -1
-  if (port < 0) {
-    port = 6009
-  } else {
-    console.log('setting port to', port)
-    runExecArgv.push(`--inspect=${port}`)
-  }
+  const port = runtimeConfig.get<number>('port') ?? 6009
   const debugOptions = { execArgv: ['--nolazy', `--inspect=${port}`] }
+  const runOptions = { execArgv: [`--inspect=${port}`] }
   const serverOptions: ServerOptions = {
-    run: { module: serverModule, transport: TransportKind.ipc, options: { execArgv: runExecArgv } },
+    run: { module: serverModule, transport: TransportKind.ipc, options: runOptions },
     debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions },
   }
 
@@ -35,7 +26,6 @@ export function activate(context: ExtensionContext) {
   if (serverRuntime) {
     serverOptions.run.runtime = serverRuntime
     serverOptions.debug.runtime = serverRuntime
-    console.log('setting server runtime to', serverRuntime)
   }
 
   let clientOptions: LanguageClientOptions = {
@@ -48,33 +38,15 @@ export function activate(context: ExtensionContext) {
     initializationOptions: { config: workspace.getConfiguration('svelte.plugin') },
   }
 
-  let ls = createLanguageServer(serverOptions, clientOptions)
-  context.subscriptions.push(ls.start())
-
-  ls.onReady().then(() => {
-    let tagRequestor = (document: TextDocument, position: Position) => {
-      let param: TextDocumentPositionParams = {
-        textDocument: {
-          uri: document.uri,
-        },
-        position,
-      }
-      return ls.sendRequest<string>('html/tag', param)
-    }
-    let disposable = activateTagClosing(
-      tagRequestor,
-      { svelte: true },
-      'svelte.plugin.html.autoClosingTags',
-    )
-    context.subscriptions.push(disposable)
-  })
+  let languageServer = createLanguageServer(serverOptions, clientOptions)
+  context.subscriptions.push(languageServer.start())
 
   context.subscriptions.push(
     commands.registerCommand('svelte.restartLanguageServer', async () => {
-      await ls.stop()
-      ls = createLanguageServer(serverOptions, clientOptions)
-      context.subscriptions.push(ls.start())
-      await ls.onReady()
+      await languageServer.stop()
+      languageServer = createLanguageServer(serverOptions, clientOptions)
+      context.subscriptions.push(languageServer.start())
+      await languageServer.onReady()
     }),
   )
 }
