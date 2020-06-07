@@ -628,10 +628,10 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-svelte-language-server@0.10.30:
-  version "0.10.30"
-  resolved "https://registry.yarnpkg.com/svelte-language-server/-/svelte-language-server-0.10.30.tgz#095f1c73e0f07fafb6e1896855b7a0d1bd85c62a"
-  integrity sha512-NqZw8Cpk7T0fS4lTF20OGjeAbGFStPdZCechsfAwo2WuYV/jg8LnRkgxqMIfOzGIlFGod8nSY+0eFLHKMhgCjA==
+svelte-language-server@0.10.29:
+  version "0.10.29"
+  resolved "https://registry.yarnpkg.com/svelte-language-server/-/svelte-language-server-0.10.29.tgz#eb66344e266662db72c9e9b9a7524e19c1b1ee95"
+  integrity sha512-mowK47IxZRVQs4/dzQbxn73EpGe4p9auWYkLDUSbVOgf5cXcythvG9hYsnMPCl/7txFCWTUx4yy0KDwfiRtaPg==
   dependencies:
     cosmiconfig "^6.0.0"
     estree-walker "^2.0.1"
@@ -642,7 +642,7 @@ svelte-language-server@0.10.30:
     source-map "^0.7.3"
     svelte "3.23.0"
     svelte-preprocess "~3.7.4"
-    svelte2tsx "*"
+    svelte2tsx "~0.1.4"
     typescript "*"
     vscode-css-languageservice "4.1.0"
     vscode-emmet-helper "1.2.17"
@@ -661,7 +661,7 @@ svelte-preprocess@~3.7.4:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
-svelte2tsx@*:
+svelte2tsx@~0.1.4:
   version "0.1.14"
   resolved "https://registry.yarnpkg.com/svelte2tsx/-/svelte2tsx-0.1.14.tgz#b20cf80f60baf4a1d05615d839c0303b3ab94748"
   integrity sha512-PmXpXwMHxNw2hNazfUkrucx/5U4OsV/UOhMOJgwaaY2ZL/Z9gWC35aMnoffIR9YwJZGzmP9+Pxa0QDCc5VdQPw==
