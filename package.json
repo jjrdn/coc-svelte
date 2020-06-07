@@ -205,7 +205,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "svelte-language-server": "0.10.29",
+    "svelte-language-server": "0.10.30",
     "vscode-languageserver-protocol": "^3.15.3"
   }
 }
