@@ -8,12 +8,14 @@ import {
   TransportKind,
   RevealOutputChannelOn,
 } from 'coc.nvim'
-import { TextDocument, Position, TextDocumentPositionParams } from 'vscode-languageserver-protocol'
 
 export function activate(context: ExtensionContext) {
   const serverModule = require.resolve('svelte-language-server/bin/server.js')
   const runtimeConfig = workspace.getConfiguration('svelte.language-server')
 
+  // TODO: -1 should be default, which self selects open port
+  // but that doesn't seem interesting to me, because setting the port
+  // also enables the inspector
   const port = runtimeConfig.get<number>('port') ?? 6009
   const debugOptions = { execArgv: ['--nolazy', `--inspect=${port}`] }
   const runOptions = { execArgv: [`--inspect=${port}`] }
@@ -22,6 +24,7 @@ export function activate(context: ExtensionContext) {
     debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions },
   }
 
+  // optionally set node exe to use
   const serverRuntime = runtimeConfig.get<string>('runtime')
   if (serverRuntime) {
     serverOptions.run.runtime = serverRuntime

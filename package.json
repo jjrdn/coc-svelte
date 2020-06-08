@@ -43,8 +43,8 @@
         "svelte.language-server.port": {
           "type": "number",
           "default": 6009,
-          "title": "Language Server Port",
-          "description": "The port to connect to language server"
+          "title": "TODO",
+          "description": "TODO"
         },
         "svelte.plugin.typescript.enable": {
           "type": "boolean",
@@ -205,7 +205,6 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "svelte-language-server": "0.10.29",
-    "vscode-languageserver-protocol": "^3.15.3"
+    "svelte-language-server": "0.10.29"
   }
 }
